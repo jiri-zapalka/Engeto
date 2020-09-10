@@ -30,25 +30,45 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish, 
 garpike and stingray are also present.'''
 ]
+
+
+#| USER |   PASSWORD  |
+#-----------------------
+#| bob  |     123     |
+#| ann  |    pass123  |
+#| mike | password123 |
+#| liz  |    pass123  |
+
+user_dic = dict()
+user1 = {"name" : "bob", "pass" : "123"}
+user2 = {"name" : "ann", "pass" : "pass123"}
+user3 = {"name" : "mike", "pass" : "password123"}
+user4 = {"name" : "liz", "pass" : "pass123"}
+user_dic[user1["name"]] = user1
+user_dic[user2["name"]] = user2
+user_dic[user3["name"]] = user3
+user_dic[user4["name"]] = user4
+
+set_user_dic = set(user_dic.keys())
+
 print("="*20, """
         WELCOME
 """ ,"="*20)
 
+#Vložení login a jeho kontrola
 log_user = input("Login: ")
-
-login1 = "bob"
-pass1 = "123"
-login2 = "ann"
-pass2 = "pass123"
-login3 = "mike"
-pass3 = "password123"
-login4 = "liz"
-pass4 = "pass123"
-login = {login1 : pass1 , login2 : pass2 , login3 : pass3 , login4 : pass4}
-if not log_user :
-    print("="*40, """
-    Uživatel není registrován. 
-        KONEC PROGRAMU
-""", "="*40)
+set_log_user = {log_user}
+if not set_log_user.isdisjoint(set_user_dic) == 0:
+    print("Invalid user login. Program is closed.")
+    exit()
 else:
-    print("NOK")
+    print("Login is OK, continue.")
+
+#Vložení hesla a jeho kontrola vůči zadanému loginu
+log_pass = input("Password: ")
+if user_dic[log_user]["pass"] == log_pass:
+    print("Password is OK. Continue.")
+else:
+    print("Invalid user password. Program is closed")
+    exit()
+
