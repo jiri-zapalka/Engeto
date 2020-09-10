@@ -31,7 +31,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 
-
+#from pprint import pprint as pp  ....zjenoduší způsob tisku
 #| USER |   PASSWORD  |
 #-----------------------
 #| bob  |     123     |
@@ -72,3 +72,12 @@ else:
     print("Invalid user password. Program is closed")
     exit()
 
+#výběr z připravených textů
+print("="*20, """
+
+Prosím zvol jeden ze tří připravených textů
+""")
+text = int(input("č. 1 až 3: "))
+print(TEXTS[text])
+
+#základní statistika
