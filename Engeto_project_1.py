@@ -77,7 +77,56 @@ print("="*20, """
 
 Prosím zvol jeden ze tří připravených textů
 """)
-text = int(input("č. 1 až 3: "))
-print(TEXTS[text])
+vol_text = int(input("č. 1 až 3: "))-1
+print(TEXTS[vol_text])
 
 #základní statistika
+print("="*20, """
+1. Počet slov v textu
+2. Počet slov začínající velkým písmenem
+3. Počet slov psaných velkým písmem
+4. Počet slov psaných malým písmem
+5. Počet čísel
+""")
+work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # příprava seznamu, bez mezer a jiných znaků
+print("1 ", (len(work_text))*"*", " ", len(work_text) )
+# 2
+slova = []
+while work_text:
+    if work_text[0].istitle():
+        slova.append(work_text[0])
+
+    work_text = work_text[1:]
+
+print("2 ", (len(slova))*"*", " ", len(slova) )
+#3
+work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  #znovu nalití původního seznamu
+slova2 = []
+while work_text:
+    if work_text[0].isupper():
+        slova2.append(work_text[0])
+
+    work_text = work_text[1:]
+
+print("3 ", (len(slova2))*"*", " ", len(slova2) )
+#4
+work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  #znovu nalití původního seznamu
+slova3 = []
+while work_text:
+    if work_text[0].islower():
+        slova3.append(work_text[0])
+
+    work_text = work_text[1:]
+
+print("4 ", (len(slova3))*"*", " ", len(slova3) )
+#5
+work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  #znovu nalití původního seznamu
+slova4 = []
+while work_text:
+    if work_text[0].isdigit():
+        slova4.append(work_text[0])
+
+    work_text = work_text[1:]
+
+print("5 ", (len(slova4))*"*", " ", len(slova4) )
+
