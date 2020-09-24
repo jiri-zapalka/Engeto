@@ -49,9 +49,9 @@ user_dic[user2["name"]] = user2
 user_dic[user3["name"]] = user3
 user_dic[user4["name"]] = user4
 set_user_dic = set(user_dic.keys())
-print("=" * 20, """
+print("-" * 20, """
         WELCOME
-""", "=" * 20)
+""", "-" * 20)
 # Vložení login a jeho kontrola
 log_user = input("Login: ")
 set_log_user = {log_user}
@@ -68,66 +68,60 @@ else:
     print("Invalid user password. Program is closed")
     exit()
 # výběr z připravených textů
-print("=" * 20, """
-Prosím zvol jeden ze tří připravených textů
+print("-" * 40, """
+We have 3 texts to be analyzed.
 """)
-vol_text = int(input("č. 1 až 3: ")) - 1
+vol_text = int(input("Enter a number btw. 1 and 3 to select: ")) - 1
 print(TEXTS[vol_text])
 # základní statistika
-print("=" * 20, """
-1. Počet slov v textu
-2. Počet slov začínající velkým písmenem
-3. Počet slov psaných velkým písmem
-4. Počet slov psaných malým písmem
-5. Počet čísel
-""")
+print("-" * 40)
 work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # příprava seznamu, bez mezer a jiných znaků
-print("1 ", (len(work_text)) * "*", " ", len(work_text))
+# 1
+print("There are ", len(work_text), " words in the selected text")
 # 2
-slova = []
-while work_text:
-    if work_text[0].istitle():
-        slova.append(work_text[0])
-    work_text = work_text[1:]
-print("2 ", (len(slova)) * "*", " ", len(slova))
-# 3
-work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # znovu nalití původního seznamu
 slova2 = []
 while work_text:
-    if work_text[0].isupper():
+    if work_text[0].istitle():
         slova2.append(work_text[0])
     work_text = work_text[1:]
-print("3 ", (len(slova2)) * "*", " ", len(slova2))
-# 4
+print("There are ", len(slova2), " titlecase word")
+# 3
 work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # znovu nalití původního seznamu
 slova3 = []
 while work_text:
-    if work_text[0].islower():
+    if work_text[0].isupper():
         slova3.append(work_text[0])
     work_text = work_text[1:]
-print("4 ", (len(slova3)) * "*", " ", len(slova3))
-# 5
+print("There are ", len(slova3), " uppercase words")
+# 4
 work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # znovu nalití původního seznamu
 slova4 = []
 while work_text:
-    if work_text[0].isdigit():
+    if work_text[0].islower():
         slova4.append(work_text[0])
     work_text = work_text[1:]
+print("There are ", len(slova4), " lowercase words")
+# 5
 work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # znovu nalití původního seznamu
-print("5 ", (len(slova4)) * "*", " ", len(slova4))
+slova5 = []
+while work_text:
+    if work_text[0].isdigit():
+        slova5.append(work_text[0])
+    work_text = work_text[1:]
+print("There are ", len(slova5), " numeric strings")
 # analýza délky slov a jejich četnosti v textu
-print("=" * 40, """
-Analýza délky slov a jejich četnosti v textu.""")
+work_text = TEXTS[vol_text].replace("\n", "").replace("-", " ").split(" ")  # znovu nalití původního seznamu
+print("-" * 40,)
 delka_slov = {}
 for slovo in work_text:
     delka_slov[len(slovo)] = delka_slov.setdefault(len(slovo), 0) + 1
-for item in delka_slov:
-    print(item, int(delka_slov[item])* "*", delka_slov[item])
-# součet všech čísel v textu
-print("=" * 40)
-prevodnik = [int(x) for x in slova4]
-print("Součet všech čísel v textu: ", sum(prevodnik))
-print("=" * 40, """
-
-KONEC PROGRAMU""")
+    # seřazení slovníku
+delka_slov = sorted(delka_slov.items())
+for key,value in delka_slov:
+    print(key, ':', value* "*", value)
+    # součet všech čísel v textu
+print("-" * 40)
+prevodnik = [int(x) for x in slova5]
+print("If we summed all the numbers in this text we would get: ", sum(prevodnik))
+print("-" * 40,)
 
