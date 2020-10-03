@@ -47,11 +47,12 @@ log_user = input("Login: ")
 log_password = input("Password: ")
 log_credentials = {log_user: log_password}
 for user, password in credentials.items():
-    if user in log_credentials.keys() and password == log_credentials.get(log_user):
+    if user in log_credentials.keys() \
+            and password == log_credentials.get(log_user):
         break
-    else:
-        print("Invalid Login name or Password")
-        exit()
+else:
+    print("Invalid Login name or Password")
+    exit()
 # výběr z připravených textů
 print("-" * 40, """
 We have 3 texts to be analyzed.
